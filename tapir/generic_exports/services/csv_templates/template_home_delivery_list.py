@@ -32,6 +32,7 @@ class TemplateHomeDeliveryList:
             MemberColumnProvider.COLUMN_ID_DELIVERY_STREET_2,
             MemberColumnProvider.COLUMN_ID_DELIVERY_POSTCODE,
             MemberColumnProvider.COLUMN_ID_DELIVERY_CITY,
+            MemberColumnProvider.COLUMN_ID_DELIVERY_DROP_OFF_LOCATION,
             MemberColumnProvider.COLUMN_ID_PHONE_NUMBER,
             MemberColumnProvider.COLUMN_ID_EMAIL_ADDRESS,
         ]

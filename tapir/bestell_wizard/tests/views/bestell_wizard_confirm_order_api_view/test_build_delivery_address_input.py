@@ -11,6 +11,7 @@ SAME_AS_BILLING_INPUT = DeliveryAddressInput(
     postcode="",
     city="",
     country="",
+    drop_off_location="",
 )
 
 
@@ -23,11 +24,19 @@ class TestBuildDeliveryAddressInput(TapirUnitTest):
             ),
         )
 
-    def test_buildDeliveryAddressInput_sameAsBillingAddress_ignoresAddressFields(
+    def test_buildDeliveryAddressInput_sameAsBillingAddress_ignoresAddressFieldsKeepsDropOffLocation(
         self,
     ):
         self.assertEqual(
-            SAME_AS_BILLING_INPUT,
+            DeliveryAddressInput(
+                same_as_billing_address=True,
+                street="",
+                street_2="",
+                postcode="",
+                city="",
+                country="",
+                drop_off_location="Hinter dem Haus",
+            ),
             BestellWizardConfirmOrderApiView.build_delivery_address_input(
                 validated_serializer_data={
                     "delivery_address": {
@@ -37,6 +46,7 @@ class TestBuildDeliveryAddressInput(TapirUnitTest):
                         "postcode": "22222",
                         "city": "Lieferdorf",
                         "country": "DE",
+                        "drop_off_location": "Hinter dem Haus",
                     }
                 }
             ),
@@ -51,6 +61,7 @@ class TestBuildDeliveryAddressInput(TapirUnitTest):
                 postcode="22222",
                 city="Lieferdorf",
                 country="AT",
+                drop_off_location="Garage",
             ),
             BestellWizardConfirmOrderApiView.build_delivery_address_input(
                 validated_serializer_data={
@@ -61,6 +72,7 @@ class TestBuildDeliveryAddressInput(TapirUnitTest):
                         "postcode": "22222",
                         "city": "Lieferdorf",
                         "country": "AT",
+                        "drop_off_location": "Garage",
                     }
                 }
             ),

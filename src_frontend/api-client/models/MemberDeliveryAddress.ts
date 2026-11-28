@@ -59,6 +59,12 @@ export interface MemberDeliveryAddress {
    * @type {string}
    * @memberof MemberDeliveryAddress
    */
+  dropOffLocation: string;
+  /**
+   *
+   * @type {string}
+   * @memberof MemberDeliveryAddress
+   */
   changeWarningText: string;
 }
 
@@ -78,6 +84,8 @@ export function instanceOfMemberDeliveryAddress(
   if (!("postcode" in value) || value["postcode"] === undefined) return false;
   if (!("city" in value) || value["city"] === undefined) return false;
   if (!("country" in value) || value["country"] === undefined) return false;
+  if (!("dropOffLocation" in value) || value["dropOffLocation"] === undefined)
+    return false;
   if (
     !("changeWarningText" in value) ||
     value["changeWarningText"] === undefined
@@ -106,6 +114,7 @@ export function MemberDeliveryAddressFromJSONTyped(
     postcode: json["postcode"],
     city: json["city"],
     country: json["country"],
+    dropOffLocation: json["drop_off_location"],
     changeWarningText: json["change_warning_text"],
   };
 }
@@ -129,6 +138,7 @@ export function MemberDeliveryAddressToJSONTyped(
     postcode: value["postcode"],
     city: value["city"],
     country: value["country"],
+    drop_off_location: value["dropOffLocation"],
     change_warning_text: value["changeWarningText"],
   };
 }

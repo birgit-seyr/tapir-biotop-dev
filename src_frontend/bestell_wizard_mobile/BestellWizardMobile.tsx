@@ -78,16 +78,14 @@ import { updateWaitingList } from "./utils/updateWaitingList.ts";
 import { willBecomeMemberNow } from "./utils/willBecomeMemberNow.ts";
 
 interface BestellWizardMobileProps {
-  csrfToken: string;
   waitingListEntryDetails?: PublicWaitingListEntryDetails;
 }
 
 const BestellWizardMobile: React.FC<BestellWizardMobileProps> = ({
-  csrfToken,
   waitingListEntryDetails,
 }) => {
-  const bestellWizardApi = useApi(BestellWizardApi, csrfToken);
-  const waitingListApi = useApi(WaitingListApi, csrfToken);
+  const bestellWizardApi = useApi(BestellWizardApi);
+  const waitingListApi = useApi(WaitingListApi);
 
   const [baseSettings, setBaseSettings] =
     useState<BestellWizardSettings>(buildEmptySettings());
@@ -181,6 +179,7 @@ const BestellWizardMobile: React.FC<BestellWizardMobileProps> = ({
       postcode: "",
       city: "",
       country: "DE",
+      dropOffLocation: "",
     });
 
   useEffect(() => {

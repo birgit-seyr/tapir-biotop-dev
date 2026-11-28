@@ -47,14 +47,8 @@ const currentYear = currentIsoYear();
 const clearedChoicesNote = (count: number) =>
   `${choicesText(count)} ${byCount(count, "wurde", "wurden")} zurückgesetzt. Ist die Wahlfrist schon vorbei, bekommen diese Mitglieder ein Brot möglichst nach ihren Lieblingsbroten. Einen schon berechneten Backplan bitte neu berechnen.`;
 
-interface WeeklyPlanBreadsProps {
-  csrfToken: string;
-}
-
-export const WeeklyPlanBreads: React.FC<WeeklyPlanBreadsProps> = ({
-  csrfToken,
-}) => {
-  const bakeryApi = useApi(BakeryApi, csrfToken);
+export const WeeklyPlanBreads: React.FC = () => {
+  const bakeryApi = useApi(BakeryApi);
   const [year, setYear] = useState(currentYear);
   const [week, setWeek] = useState(currentWeek);
   const [allBreads, setAllBreads] = useState<BreadList[]>([]);
@@ -392,7 +386,6 @@ export const WeeklyPlanBreads: React.FC<WeeklyPlanBreadsProps> = ({
             <CopyWeekSettingsSelector
               year={year}
               week={week}
-              csrfToken={csrfToken}
               disabled={loading || saving}
               onBusyChange={setCopyingWeek}
               onCopied={handleWeekSettingsCopied}
@@ -530,7 +523,6 @@ export const WeeklyPlanBreads: React.FC<WeeklyPlanBreadsProps> = ({
                     activeBreads={allBreads.filter(
                       (bread) => dayConfig.breads[bread.id!] === true,
                     )}
-                    csrfToken={csrfToken}
                   />
                 </div>
               </div>
@@ -547,7 +539,6 @@ export const WeeklyPlanBreads: React.FC<WeeklyPlanBreadsProps> = ({
           week={week}
           day={selectedDay.day}
           dayLabel={selectedDay.label}
-          csrfToken={csrfToken}
           setToastDatas={setToastDatas}
         />
       )}

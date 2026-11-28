@@ -65,6 +65,12 @@ export interface BestellWizardImages {
    * @type {string}
    * @memberof BestellWizardImages
    */
+  step8bDeliveryAreaImage: string;
+  /**
+   *
+   * @type {string}
+   * @memberof BestellWizardImages
+   */
   step9BackgroundImage: string;
   /**
    *
@@ -140,6 +146,11 @@ export function instanceOfBestellWizardImages(
   )
     return false;
   if (
+    !("step8bDeliveryAreaImage" in value) ||
+    value["step8bDeliveryAreaImage"] === undefined
+  )
+    return false;
+  if (
     !("step9BackgroundImage" in value) ||
     value["step9BackgroundImage"] === undefined
   )
@@ -191,6 +202,7 @@ export function BestellWizardImagesFromJSONTyped(
     step5BackgroundImage: json["step5_background_image"],
     step6BackgroundImage: json["step6_background_image"],
     step8BackgroundImage: json["step8_background_image"],
+    step8bDeliveryAreaImage: json["step8b_delivery_area_image"],
     step9BackgroundImage: json["step9_background_image"],
     step10BackgroundImage: json["step10_background_image"],
     step11BackgroundImage: json["step11_background_image"],
@@ -220,6 +232,7 @@ export function BestellWizardImagesToJSONTyped(
     step5_background_image: value["step5BackgroundImage"],
     step6_background_image: value["step6BackgroundImage"],
     step8_background_image: value["step8BackgroundImage"],
+    step8b_delivery_area_image: value["step8bDeliveryAreaImage"],
     step9_background_image: value["step9BackgroundImage"],
     step10_background_image: value["step10BackgroundImage"],
     step11_background_image: value["step11BackgroundImage"],

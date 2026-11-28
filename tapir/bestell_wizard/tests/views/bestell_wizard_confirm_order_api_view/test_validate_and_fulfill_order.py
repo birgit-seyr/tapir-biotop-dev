@@ -72,6 +72,7 @@ class TestValidateAndFulfillOrder(TapirUnitTest):
             postcode="",
             city="",
             country="",
+            drop_off_location="",
         )
         mock_build_delivery_address_input.return_value = delivery_address_input
 

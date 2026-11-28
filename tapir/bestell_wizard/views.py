@@ -417,6 +417,9 @@ class BestellWizardConfirmOrderApiView(APIView):
         validated_serializer_data: dict,
     ) -> DeliveryAddressInput:
         delivery_address = validated_serializer_data.get("delivery_address")
+        drop_off_location = (
+            "" if delivery_address is None else delivery_address["drop_off_location"]
+        )
         if delivery_address is None or delivery_address["same_as_billing_address"]:
             return DeliveryAddressInput(
                 same_as_billing_address=True,
@@ -425,6 +428,7 @@ class BestellWizardConfirmOrderApiView(APIView):
                 postcode="",
                 city="",
                 country="",
+                drop_off_location=drop_off_location,
             )
 
         return DeliveryAddressInput(
@@ -434,6 +438,7 @@ class BestellWizardConfirmOrderApiView(APIView):
             postcode=delivery_address["postcode"],
             city=delivery_address["city"],
             country=delivery_address["country"],
+            drop_off_location=drop_off_location,
         )
 
 
@@ -676,6 +681,7 @@ class BestellWizardBaseDataApiView(APIView):
             "step5_background_image": ParameterKeys.BESTELLWIZARD_STEP5_BACKGROUND_IMAGE,
             "step6_background_image": ParameterKeys.BESTELLWIZARD_STEP6_BACKGROUND_IMAGE,
             "step8_background_image": ParameterKeys.BESTELLWIZARD_STEP8_BACKGROUND_IMAGE,
+            "step8b_delivery_area_image": ParameterKeys.BESTELLWIZARD_STEP8B_DELIVERY_AREA_IMAGE,
             "step9_background_image": ParameterKeys.BESTELLWIZARD_STEP9_BACKGROUND_IMAGE,
             "step10_background_image": ParameterKeys.BESTELLWIZARD_STEP10_BACKGROUND_IMAGE,
             "step11_background_image": ParameterKeys.BESTELLWIZARD_STEP11_BACKGROUND_IMAGE,

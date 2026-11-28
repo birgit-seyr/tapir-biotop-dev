@@ -44,6 +44,11 @@ class TestBuildImagesObject(TapirUnitTest):
             cache=cache,
         )
         mock_parameter_value(
+            key=ParameterKeys.BESTELLWIZARD_STEP8B_DELIVERY_AREA_IMAGE,
+            value="test_step8b_delivery_area_image",
+            cache=cache,
+        )
+        mock_parameter_value(
             key=ParameterKeys.BESTELLWIZARD_STEP9_BACKGROUND_IMAGE,
             value="test_step9_background_image",
             cache=cache,
@@ -85,6 +90,7 @@ class TestBuildImagesObject(TapirUnitTest):
                 "step5_background_image": "test_step5_background_image",
                 "step6_background_image": "test_step6_background_image",
                 "step8_background_image": "test_step8_background_image",
+                "step8b_delivery_area_image": "test_step8b_delivery_area_image",
                 "step9_background_image": "test_step9_background_image",
                 "step10_background_image": "test_step10_background_image",
                 "step11_background_image": "test_step11_background_image",

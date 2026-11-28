@@ -54,6 +54,7 @@ class MemberColumnProvider:
     COLUMN_ID_DELIVERY_STREET_2 = "member_delivery_street_2"
     COLUMN_ID_DELIVERY_POSTCODE = "member_delivery_postcode"
     COLUMN_ID_DELIVERY_CITY = "member_delivery_city"
+    COLUMN_ID_DELIVERY_DROP_OFF_LOCATION = "member_delivery_drop_off_location"
 
     @classmethod
     def get_member_columns(cls) -> list[ExportSegmentColumn]:
@@ -185,6 +186,12 @@ class MemberColumnProvider:
                 display_name="Lieferadresse Ort",
                 description="",
                 get_value=cls.get_value_member_delivery_city,
+            ),
+            ExportSegmentColumn(
+                id=cls.COLUMN_ID_DELIVERY_DROP_OFF_LOCATION,
+                display_name="Alternativer Ablageort",
+                description="Alternativer Ablageort bei Hauslieferung",
+                get_value=cls.get_value_member_delivery_drop_off_location,
             ),
         ]
 
@@ -379,3 +386,7 @@ class MemberColumnProvider:
         return MemberDeliveryAddressGetter.get_delivery_address(
             address_owner=member
         ).city
+
+    @classmethod
+    def get_value_member_delivery_drop_off_location(cls, member: Member, _, __):
+        return member.delivery_drop_off_location

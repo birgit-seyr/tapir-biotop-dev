@@ -651,6 +651,17 @@ class ParameterDefinitionsBestellwizard:
         bestellwizard_parameter_order -= 1
 
         importer.parameter_definition(
+            key=ParameterKeys.BESTELLWIZARD_STEP8B_DELIVERY_AREA_IMAGE,
+            label="Seite 8B: Lieferadresse - Bild des Liefergebiets",
+            datatype=TapirParameterDatatype.STRING,
+            initial_value="",
+            description="Link zu einem Bild, z.B. einer Karte des Liefergebiets, das bei der Eingabe der Lieferadresse angezeigt wird. Leer lassen, um kein Bild anzuzeigen.",
+            category=ParameterCategory.BESTELLWIZARD,
+            order_priority=bestellwizard_parameter_order,
+        )
+        bestellwizard_parameter_order -= 1
+
+        importer.parameter_definition(
             key=ParameterKeys.BESTELLWIZARD_STEP9_TITLE,
             label="Seite 9: Bankverbindung - Titel",
             datatype=TapirParameterDatatype.STRING,

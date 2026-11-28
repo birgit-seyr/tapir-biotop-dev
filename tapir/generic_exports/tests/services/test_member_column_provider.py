@@ -323,6 +323,7 @@ class TestMemberColumnProvider(TapirIntegrationTest):
             delivery_street_2="Hinterhaus",
             delivery_postcode="54321",
             delivery_city="Lieferstadt",
+            delivery_drop_off_location="Garage",
         )
 
         self.assertEqual(
@@ -340,6 +341,12 @@ class TestMemberColumnProvider(TapirIntegrationTest):
         self.assertEqual(
             "Lieferstadt",
             MemberColumnProvider.get_value_member_delivery_city(member, None, {}),
+        )
+        self.assertEqual(
+            "Garage",
+            MemberColumnProvider.get_value_member_delivery_drop_off_location(
+                member, None, {}
+            ),
         )
 
     def test_getValueMemberDeliveryAddress_sameAsBillingAddress_returnsBillingAddress(

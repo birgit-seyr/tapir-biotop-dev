@@ -16,7 +16,6 @@ import { DAY_LABELS } from "../../utils/weekdays";
 interface CopyWeekSettingsSelectorProps {
   year: number;
   week: number;
-  csrfToken: string;
   disabled: boolean;
   // While copying, the rest of the weekly plan must not change.
   onBusyChange: (busy: boolean) => void;
@@ -43,16 +42,8 @@ const dayNames = (days: number[]) =>
 
 export const CopyWeekSettingsSelector: React.FC<
   CopyWeekSettingsSelectorProps
-> = ({
-  year,
-  week,
-  csrfToken,
-  disabled,
-  onBusyChange,
-  onCopied,
-  setToastDatas,
-}) => {
-  const bakeryApi = useApi(BakeryApi, csrfToken);
+> = ({ year, week, disabled, onBusyChange, onCopied, setToastDatas }) => {
+  const bakeryApi = useApi(BakeryApi);
   const [sources, setSources] = useState<WeekSettingsSource[]>([]);
   const [sourcesState, setSourcesState] = useState<SourcesState>("loading");
   const [selectedKey, setSelectedKey] = useState("");

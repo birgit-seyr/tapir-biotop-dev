@@ -277,6 +277,9 @@ const Step10OrderSummary: React.FC<Step10OrderSummaryProps> = ({
       <>
         <li>Hauslieferung: {pickupLocation.name}</li>
         {address && <li>Lieferadresse: {address}</li>}
+        {address && deliveryAddress?.dropOffLocation && (
+          <li>Alternativer Ablageort: {deliveryAddress.dropOffLocation}</li>
+        )}
         {deliveryChargeBadge && <li>Liefergebühr: {deliveryChargeBadge}</li>}
       </>
     );

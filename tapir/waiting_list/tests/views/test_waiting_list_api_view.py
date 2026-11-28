@@ -154,6 +154,7 @@ class TestWaitingListAPIView(TapirIntegrationTest):
                     "postcode": "",
                     "city": "",
                     "country": "DE",
+                    "drop_off_location": "",
                 },
             },
             response_content["results"][0],

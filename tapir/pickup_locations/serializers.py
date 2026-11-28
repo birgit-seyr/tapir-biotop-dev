@@ -217,6 +217,7 @@ class DeliveryAddressSerializer(serializers.Serializer):
     postcode = serializers.CharField(allow_blank=True, default="")
     city = serializers.CharField(allow_blank=True, default="")
     country = serializers.CharField(allow_blank=True, default="DE")
+    drop_off_location = serializers.CharField(allow_blank=True, default="")
 
 
 class ChangeMemberPickupLocationRequestSerializer(serializers.Serializer):
@@ -232,6 +233,7 @@ class StoredDeliveryAddressSerializer(serializers.Serializer):
     postcode = serializers.CharField()
     city = serializers.CharField()
     country = serializers.CharField()
+    drop_off_location = serializers.CharField()
 
 
 class MemberDeliveryAddressSerializer(StoredDeliveryAddressSerializer):

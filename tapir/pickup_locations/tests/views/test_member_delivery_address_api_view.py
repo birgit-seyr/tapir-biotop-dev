@@ -78,6 +78,8 @@ class TestMemberDeliveryAddressApiView(TapirIntegrationTest):
             year=2027, month=6, day=15
         )
         member = self._create_member_with_home_delivery()
+        member.delivery_drop_off_location = "Garage"
+        member.save()
         self.client.force_login(member)
 
         response = self._get(member_id=member.id)
@@ -91,6 +93,7 @@ class TestMemberDeliveryAddressApiView(TapirIntegrationTest):
                 "postcode": "",
                 "city": "",
                 "country": "DE",
+                "drop_off_location": "Garage",
                 "change_warning_text": "",
             },
             response.json(),
@@ -128,7 +131,10 @@ class TestMemberDeliveryAddressApiView(TapirIntegrationTest):
         member = self._create_member_with_home_delivery()
         self.client.force_login(member)
 
-        response = self._put(member_id=member.id, data=self._build_separate_address())
+        response = self._put(
+            member_id=member.id,
+            data=self._build_separate_address(drop_off_location="Garage"),
+        )
 
         self.assertStatusCode(response, status.HTTP_200_OK)
         self.assert_order_confirmed(response.json())
@@ -137,6 +143,7 @@ class TestMemberDeliveryAddressApiView(TapirIntegrationTest):
         self.assertEqual("Lieferweg 2", member.delivery_street)
         self.assertEqual("22222", member.delivery_postcode)
         self.assertEqual("Lieferdorf", member.delivery_city)
+        self.assertEqual("Garage", member.delivery_drop_off_location)
         self.assertTrue(
             MemberDeliveryAddressChangedLogEntry.objects.filter(user=member).exists()
         )

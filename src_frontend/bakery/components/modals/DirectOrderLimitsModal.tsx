@@ -20,7 +20,6 @@ interface DirectOrderLimitsModalProps {
   week: number;
   day: number;
   dayLabel: string;
-  csrfToken: string;
   setToastDatas: React.Dispatch<React.SetStateAction<ToastData[]>>;
 }
 
@@ -49,10 +48,9 @@ export const DirectOrderLimitsModal: React.FC<DirectOrderLimitsModalProps> = ({
   week,
   day,
   dayLabel,
-  csrfToken,
   setToastDatas,
 }) => {
-  const bakeryApi = useApi(BakeryApi, csrfToken);
+  const bakeryApi = useApi(BakeryApi);
 
   const [breads, setBreads] = useState<BreadDirectOrderLimit[]>([]);
   const [groups, setGroups] = useState<GroupDirectOrderLimit[]>([]);

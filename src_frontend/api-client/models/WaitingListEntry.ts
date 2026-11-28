@@ -187,6 +187,12 @@ export interface WaitingListEntry {
    * @type {string}
    * @memberof WaitingListEntry
    */
+  deliveryDropOffLocation?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof WaitingListEntry
+   */
   member?: string | null;
 }
 
@@ -271,6 +277,10 @@ export function WaitingListEntryFromJSONTyped(
       json["delivery_country"] == null
         ? undefined
         : MemberDeliveryCountryFromJSON(json["delivery_country"]),
+    deliveryDropOffLocation:
+      json["delivery_drop_off_location"] == null
+        ? undefined
+        : json["delivery_drop_off_location"],
     member: json["member"] == null ? undefined : json["member"],
   };
 }
@@ -315,6 +325,7 @@ export function WaitingListEntryToJSONTyped(
     delivery_postcode: value["deliveryPostcode"],
     delivery_city: value["deliveryCity"],
     delivery_country: MemberDeliveryCountryToJSON(value["deliveryCountry"]),
+    delivery_drop_off_location: value["deliveryDropOffLocation"],
     member: value["member"],
   };
 }

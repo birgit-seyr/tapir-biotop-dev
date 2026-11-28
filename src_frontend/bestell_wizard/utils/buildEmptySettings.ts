@@ -104,6 +104,7 @@ export function buildEmptySettings(): BestellWizardSettings {
       step5BackgroundImage: "",
       step6BackgroundImage: "",
       step8BackgroundImage: "",
+      step8bDeliveryAreaImage: "",
       step9BackgroundImage: "",
       step10BackgroundImage: "",
       step11BackgroundImage: "",

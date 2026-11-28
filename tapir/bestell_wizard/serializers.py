@@ -132,6 +132,7 @@ class BestellWizardImagesSerializer(serializers.Serializer):
     step5_background_image = serializers.URLField()
     step6_background_image = serializers.URLField()
     step8_background_image = serializers.URLField()
+    step8b_delivery_area_image = serializers.URLField()
     step9_background_image = serializers.URLField()
     step10_background_image = serializers.URLField()
     step11_background_image = serializers.URLField()

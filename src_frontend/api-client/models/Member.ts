@@ -259,6 +259,12 @@ export interface Member {
    * @memberof Member
    */
   deliveryCountry?: MemberDeliveryCountry;
+  /**
+   *
+   * @type {string}
+   * @memberof Member
+   */
+  deliveryDropOffLocation?: string;
 }
 
 /**
@@ -356,6 +362,10 @@ export function MemberFromJSONTyped(
       json["delivery_country"] == null
         ? undefined
         : MemberDeliveryCountryFromJSON(json["delivery_country"]),
+    deliveryDropOffLocation:
+      json["delivery_drop_off_location"] == null
+        ? undefined
+        : json["delivery_drop_off_location"],
   };
 }
 
@@ -425,5 +435,6 @@ export function MemberToJSONTyped(
     delivery_postcode: value["deliveryPostcode"],
     delivery_city: value["deliveryCity"],
     delivery_country: MemberDeliveryCountryToJSON(value["deliveryCountry"]),
+    delivery_drop_off_location: value["deliveryDropOffLocation"],
   };
 }

@@ -20,6 +20,7 @@ class DeliveryAddressInput:
     postcode: str
     city: str
     country: str
+    drop_off_location: str
 
 
 class MemberDeliveryAddressGetter:
