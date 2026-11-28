@@ -27,7 +27,13 @@ class MemberDeliveryAddressSetter:
                 setattr(member, field_name, "")
 
         old_address = cls._format_for_log(Member.objects.get(id=member.id))
-        member.save(update_fields=["delivery_same_as_billing_address", *ADDRESS_FIELDS])
+        member.save(
+            update_fields=[
+                "delivery_same_as_billing_address",
+                "delivery_drop_off_location",
+                *ADDRESS_FIELDS,
+            ]
+        )
         new_address = cls._format_for_log(member)
 
         if new_address != old_address:
@@ -42,7 +48,11 @@ class MemberDeliveryAddressSetter:
     def copy_delivery_address(
         source: Member | WaitingListEntry, target: Member | WaitingListEntry
     ) -> None:
-        for field_name in ["delivery_same_as_billing_address", *ADDRESS_FIELDS]:
+        for field_name in [
+            "delivery_same_as_billing_address",
+            "delivery_drop_off_location",
+            *ADDRESS_FIELDS,
+        ]:
             setattr(target, field_name, getattr(source, field_name))
 
     @staticmethod
@@ -57,9 +67,17 @@ class MemberDeliveryAddressSetter:
         target.delivery_postcode = delivery_address_input.postcode
         target.delivery_city = delivery_address_input.city
         target.delivery_country = delivery_address_input.country
+        target.delivery_drop_off_location = delivery_address_input.drop_off_location
 
     @classmethod
     def _format_for_log(cls, member: Member) -> str:
+        address = cls._format_address_for_log(member=member)
+        if not member.delivery_drop_off_location:
+            return address
+        return f"{address}, Ablageort: {member.delivery_drop_off_location}"
+
+    @classmethod
+    def _format_address_for_log(cls, member: Member) -> str:
         if member.delivery_same_as_billing_address:
             return cls.SAME_AS_BILLING_LOG_TEXT
         return ", ".join(

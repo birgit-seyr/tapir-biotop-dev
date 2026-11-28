@@ -150,6 +150,7 @@ class TestMemberDeliveryAddressGetter(TapirUnitTest):
                     postcode="",
                     city="",
                     country="",
+                    drop_off_location="",
                 ),
                 personal_data={
                     "street": "Rechnungsstraße 1",
@@ -178,6 +179,7 @@ class TestMemberDeliveryAddressGetter(TapirUnitTest):
                     postcode="22222",
                     city="Lieferdorf",
                     country="AT",
+                    drop_off_location="",
                 ),
                 personal_data={
                     "street": "Rechnungsstraße 1",

@@ -158,6 +158,7 @@ const PickupLocationChangeModal: React.FC<PickupLocationChangeModalProps> = ({
           postcode: result.postcode,
           city: result.city,
           country: result.country || "DE",
+          dropOffLocation: result.dropOffLocation,
         }),
       )
       .catch((error) =>

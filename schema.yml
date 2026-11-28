@@ -12208,6 +12208,9 @@ components:
         country:
           type: string
           default: DE
+        drop_off_location:
+          type: string
+          default: ''
       required:
       - same_as_billing_address
     DeliveryCountryEnum:
@@ -14479,6 +14482,9 @@ components:
           oneOf:
           - $ref: '#/components/schemas/DeliveryCountryEnum'
           - $ref: '#/components/schemas/BlankEnum'
+        delivery_drop_off_location:
+          type: string
+          maxLength: 255
       required:
       - created_at
       - first_name
@@ -14752,12 +14758,15 @@ components:
           type: string
         country:
           type: string
+        drop_off_location:
+          type: string
         change_warning_text:
           type: string
       required:
       - change_warning_text
       - city
       - country
+      - drop_off_location
       - postcode
       - same_as_billing_address
       - street
@@ -16226,6 +16235,9 @@ components:
           oneOf:
           - $ref: '#/components/schemas/DeliveryCountryEnum'
           - $ref: '#/components/schemas/BlankEnum'
+        delivery_drop_off_location:
+          type: string
+          maxLength: 255
         member:
           type: string
           minLength: 1
@@ -18389,9 +18401,12 @@ components:
           type: string
         country:
           type: string
+        drop_off_location:
+          type: string
       required:
       - city
       - country
+      - drop_off_location
       - postcode
       - same_as_billing_address
       - street
@@ -19368,6 +19383,9 @@ components:
           oneOf:
           - $ref: '#/components/schemas/DeliveryCountryEnum'
           - $ref: '#/components/schemas/BlankEnum'
+        delivery_drop_off_location:
+          type: string
+          maxLength: 255
         member:
           type: string
           nullable: true
@@ -19573,6 +19591,9 @@ components:
           oneOf:
           - $ref: '#/components/schemas/DeliveryCountryEnum'
           - $ref: '#/components/schemas/BlankEnum'
+        delivery_drop_off_location:
+          type: string
+          maxLength: 255
         member:
           type: string
           minLength: 1

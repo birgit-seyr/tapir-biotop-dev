@@ -54,6 +54,12 @@ export interface StoredDeliveryAddress {
    * @memberof StoredDeliveryAddress
    */
   country: string;
+  /**
+   *
+   * @type {string}
+   * @memberof StoredDeliveryAddress
+   */
+  dropOffLocation: string;
 }
 
 /**
@@ -72,6 +78,8 @@ export function instanceOfStoredDeliveryAddress(
   if (!("postcode" in value) || value["postcode"] === undefined) return false;
   if (!("city" in value) || value["city"] === undefined) return false;
   if (!("country" in value) || value["country"] === undefined) return false;
+  if (!("dropOffLocation" in value) || value["dropOffLocation"] === undefined)
+    return false;
   return true;
 }
 
@@ -95,6 +103,7 @@ export function StoredDeliveryAddressFromJSONTyped(
     postcode: json["postcode"],
     city: json["city"],
     country: json["country"],
+    dropOffLocation: json["drop_off_location"],
   };
 }
 
@@ -117,5 +126,6 @@ export function StoredDeliveryAddressToJSONTyped(
     postcode: value["postcode"],
     city: value["city"],
     country: value["country"],
+    drop_off_location: value["dropOffLocation"],
   };
 }

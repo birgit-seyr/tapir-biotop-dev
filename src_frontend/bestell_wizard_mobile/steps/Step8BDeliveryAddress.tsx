@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FloatingLabel, Form } from "react-bootstrap";
 import { DeliveryAddressRequest } from "../../api-client";
 import { BestellWizardSettings } from "../../bestell_wizard/types/BestellWizardSettings.ts";
+import { DROP_OFF_LOCATION_LABEL } from "../../utils/dropOffLocationLabel.ts";
 import NextStepButton from "../components/NextStepButton.tsx";
 import TapirCheckbox from "../components/TapirCheckbox.tsx";
 import { isDeliveryAddressValid } from "../utils/isDeliveryAddressValid.ts";
@@ -108,6 +109,23 @@ const Step8BDeliveryAddress: React.FC<Step8BDeliveryAddressProps> = ({
           ))}
         </div>
       )}
+      <FloatingLabel
+        label={DROP_OFF_LOCATION_LABEL}
+        controlId={"delivery_drop_off_location"}
+        style={{ width: "100%", maxWidth: "540px" }}
+      >
+        <Form.Control
+          placeholder={DROP_OFF_LOCATION_LABEL}
+          value={deliveryAddress.dropOffLocation ?? ""}
+          onChange={(event) =>
+            setDeliveryAddress({
+              ...deliveryAddress,
+              dropOffLocation: event.target.value,
+            })
+          }
+          size={"sm"}
+        />
+      </FloatingLabel>
       <NextStepButton onClick={validate} stepActive={stepActive} />
     </div>
   );

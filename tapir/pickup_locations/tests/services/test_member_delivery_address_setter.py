@@ -59,6 +59,23 @@ class TestMemberDeliveryAddressSetter(TapirIntegrationTest):
         self.assertEqual("Lieferweg 2, 22222 Lieferdorf, DE", log_entry.old_address)
         self.assertEqual("Wie Rechnungsadresse", log_entry.new_address)
 
+    def test_saveDeliveryAddress_sameAsBillingWithDropOffLocation_keepsAndLogsDropOffLocation(
+        self,
+    ):
+        self.member.delivery_drop_off_location = "Garage"
+
+        MemberDeliveryAddressSetter.save_delivery_address(
+            member=self.member, actor=self.actor
+        )
+
+        self.member.refresh_from_db()
+        self.assertEqual("Garage", self.member.delivery_drop_off_location)
+        log_entry = MemberDeliveryAddressChangedLogEntry.objects.get()
+        self.assertEqual("Wie Rechnungsadresse", log_entry.old_address)
+        self.assertEqual(
+            "Wie Rechnungsadresse, Ablageort: Garage", log_entry.new_address
+        )
+
     def test_saveDeliveryAddress_unchangedAddress_createsNoLogEntry(self):
         MemberDeliveryAddressSetter.save_delivery_address(
             member=self.member, actor=self.actor
@@ -90,6 +107,7 @@ class TestMemberDeliveryAddressSetter(TapirIntegrationTest):
                 postcode="22222",
                 city="Lieferdorf",
                 country="AT",
+                drop_off_location="Garage",
             ),
         )
 
@@ -99,4 +117,5 @@ class TestMemberDeliveryAddressSetter(TapirIntegrationTest):
         self.assertEqual("22222", member.delivery_postcode)
         self.assertEqual("Lieferdorf", member.delivery_city)
         self.assertEqual("AT", member.delivery_country)
+        self.assertEqual("Garage", member.delivery_drop_off_location)
         self.assertFalse(Member.objects.filter(id=member.id).exists())

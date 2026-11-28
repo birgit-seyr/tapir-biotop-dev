@@ -674,6 +674,7 @@ class MemberDeliveryAddressApiView(APIView):
                     "postcode": member.delivery_postcode,
                     "city": member.delivery_city,
                     "country": str(member.delivery_country),
+                    "drop_off_location": member.delivery_drop_off_location,
                     "change_warning_text": self.get_change_warning_text(),
                 }
             ).data

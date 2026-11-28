@@ -395,6 +395,7 @@ class Member(TapirUser):
     delivery_postcode = models.CharField(max_length=32, blank=True)
     delivery_city = models.CharField(max_length=50, blank=True)
     delivery_country = CountryField(blank=True, default="DE")
+    delivery_drop_off_location = models.CharField(max_length=255, blank=True)
 
     @property
     def pickup_location(self):
@@ -1033,6 +1034,7 @@ class WaitingListEntry(TapirModel):
     delivery_postcode = models.CharField(max_length=32, blank=True)
     delivery_city = models.CharField(max_length=50, blank=True)
     delivery_country = CountryField(blank=True, default="DE")
+    delivery_drop_off_location = models.CharField(max_length=255, blank=True)
 
 
 class WaitingListPickupLocationWish(TapirModel):

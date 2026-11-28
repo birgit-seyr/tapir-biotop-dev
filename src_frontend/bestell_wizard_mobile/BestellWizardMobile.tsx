@@ -179,6 +179,7 @@ const BestellWizardMobile: React.FC<BestellWizardMobileProps> = ({
       postcode: "",
       city: "",
       country: "DE",
+      dropOffLocation: "",
     });
 
   useEffect(() => {

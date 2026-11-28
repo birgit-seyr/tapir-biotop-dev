@@ -27,6 +27,7 @@ class TestValidateHomeDeliveryAddress(TapirUnitTest):
             postcode="22222",
             city="Lieferdorf",
             country="DE",
+            drop_off_location="",
         )
 
     @patch.object(HomeDeliveryAddressValidator, "validate_address", autospec=True)

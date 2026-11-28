@@ -418,6 +418,7 @@ class WaitingListApiView(APIView):
                 "postcode": entry.delivery_postcode,
                 "city": entry.delivery_city,
                 "country": str(entry.delivery_country),
+                "drop_off_location": entry.delivery_drop_off_location,
             },
         }
 

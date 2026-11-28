@@ -44,6 +44,7 @@ const DeliveryAddressModal: React.FC<DeliveryAddressModalProps> = ({
           postcode: deliveryAddress.postcode,
           city: deliveryAddress.city,
           country: deliveryAddress.country || "DE",
+          dropOffLocation: deliveryAddress.dropOffLocation,
         });
         setChangeWarningText(deliveryAddress.changeWarningText);
       })

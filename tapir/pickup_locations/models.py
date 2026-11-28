@@ -86,8 +86,8 @@ class MemberDeliveryAddressChangedLogEntry(LogEntry):
     template_name = (
         "pickup_locations/log/member_delivery_address_changed_log_entry.html"
     )
-    old_address = models.CharField(max_length=600)
-    new_address = models.CharField(max_length=600)
+    old_address = models.CharField(max_length=1000)
+    new_address = models.CharField(max_length=1000)
 
     def populate_delivery_address(
         self,

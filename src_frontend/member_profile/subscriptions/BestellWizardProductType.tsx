@@ -190,6 +190,7 @@ const BestellWizardProductType: React.FC<BestellWizardProductTypeProps> = ({
             postcode: memberDeliveryAddress.postcode,
             city: memberDeliveryAddress.city,
             country: memberDeliveryAddress.country || "DE",
+            dropOffLocation: memberDeliveryAddress.dropOffLocation,
           });
 
           setCanChangePaymentRhythm(canChangePaymentRhythmResponse.canChange);

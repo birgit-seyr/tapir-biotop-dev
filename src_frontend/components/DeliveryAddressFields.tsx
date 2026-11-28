@@ -1,6 +1,7 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 import { DeliveryAddressRequest } from "../api-client";
+import { DROP_OFF_LOCATION_LABEL } from "../utils/dropOffLocationLabel.ts";
 
 interface DeliveryAddressFieldsProps {
   deliveryAddress: DeliveryAddressRequest;
@@ -48,6 +49,18 @@ const DeliveryAddressFields: React.FC<DeliveryAddressFieldsProps> = ({
             />
           </Form.Group>
         ))}
+      <Form.Group controlId={"delivery_drop_off_location"}>
+        <Form.Label>{DROP_OFF_LOCATION_LABEL}</Form.Label>
+        <Form.Control
+          value={deliveryAddress.dropOffLocation ?? ""}
+          onChange={(event) =>
+            setDeliveryAddress({
+              ...deliveryAddress,
+              dropOffLocation: event.target.value,
+            })
+          }
+        />
+      </Form.Group>
     </>
   );
 };

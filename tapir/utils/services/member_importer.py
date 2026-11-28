@@ -46,6 +46,7 @@ DELIVERY_ADDRESS_COLUMNS = {
     "Lieferadresse PLZ": "delivery_postcode",
     "Lieferadresse Ort": "delivery_city",
 }
+DELIVERY_DROP_OFF_LOCATION_COLUMN = "Alternativer Ablageort"
 
 
 class MemberImporter:
@@ -245,6 +246,9 @@ class MemberImporter:
         if cls.update_delivery_address(member=member, row=row):
             member_updated = True
 
+        if cls.update_delivery_drop_off_location(member=member, row=row):
+            member_updated = True
+
         target_mail = cls.build_mail(row=row, member_no=member.member_no)
         if DataImportUtils.update_if_diff(
             member,
@@ -285,6 +289,19 @@ class MemberImporter:
             ):
                 member_updated = True
         return member_updated
+
+    @staticmethod
+    def update_delivery_drop_off_location(member: Member, row: dict[str, str]) -> bool:
+        if not DataImportUtils.is_cell_filled(
+            row=row, column=DELIVERY_DROP_OFF_LOCATION_COLUMN
+        ):
+            return False
+
+        return DataImportUtils.update_if_diff(
+            member,
+            "delivery_drop_off_location",
+            DataImportUtils.normalize_cell(row.get(DELIVERY_DROP_OFF_LOCATION_COLUMN)),
+        )
 
     @classmethod
     def build_mail(cls, row: dict[str, str], member_no: int):

@@ -54,6 +54,12 @@ export interface DeliveryAddressRequest {
    * @memberof DeliveryAddressRequest
    */
   country?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof DeliveryAddressRequest
+   */
+  dropOffLocation?: string;
 }
 
 /**
@@ -90,6 +96,8 @@ export function DeliveryAddressRequestFromJSONTyped(
     postcode: json["postcode"] == null ? undefined : json["postcode"],
     city: json["city"] == null ? undefined : json["city"],
     country: json["country"] == null ? undefined : json["country"],
+    dropOffLocation:
+      json["drop_off_location"] == null ? undefined : json["drop_off_location"],
   };
 }
 
@@ -114,5 +122,6 @@ export function DeliveryAddressRequestToJSONTyped(
     postcode: value["postcode"],
     city: value["city"],
     country: value["country"],
+    drop_off_location: value["dropOffLocation"],
   };
 }
