@@ -51,13 +51,23 @@ const Step8BDeliveryAddress: React.FC<Step8BDeliveryAddressProps> = ({
   }
 
   return (
-    <div className={"d-flex flex-column gap-2 align-items-center"}>
+    <div
+      className={"d-flex flex-column gap-2 align-items-center"}
+      style={{ width: "100%" }}
+    >
       <div
         className={"text-center"}
         dangerouslySetInnerHTML={{
           __html: settings.strings.homeDeliveryChoiceText,
         }}
       />
+      {settings.images.step8bDeliveryAreaImage && (
+        <img
+          src={settings.images.step8bDeliveryAreaImage}
+          alt={"Liefergebiet"}
+          style={{ maxWidth: "100%", maxHeight: "40vh", objectFit: "contain" }}
+        />
+      )}
       <TapirCheckbox
         checked={deliveryAddress.sameAsBillingAddress}
         onChange={(checked) =>
@@ -72,14 +82,14 @@ const Step8BDeliveryAddress: React.FC<Step8BDeliveryAddressProps> = ({
       {!deliveryAddress.sameAsBillingAddress && (
         <div
           className={"d-flex gap-2 flex-wrap align-items-start"}
-          style={{ maxWidth: "540px" }}
+          style={{ width: "100%", maxWidth: "540px" }}
         >
           {FIELDS.map(({ field, label, required }) => (
             <FloatingLabel
               key={field}
               label={label}
               controlId={"delivery_" + field}
-              style={{ width: "264px" }}
+              style={{ flex: "1 1 264px", minWidth: 0 }}
             >
               <Form.Control
                 placeholder={label}

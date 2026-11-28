@@ -676,6 +676,7 @@ class BestellWizardBaseDataApiView(APIView):
             "step5_background_image": ParameterKeys.BESTELLWIZARD_STEP5_BACKGROUND_IMAGE,
             "step6_background_image": ParameterKeys.BESTELLWIZARD_STEP6_BACKGROUND_IMAGE,
             "step8_background_image": ParameterKeys.BESTELLWIZARD_STEP8_BACKGROUND_IMAGE,
+            "step8b_delivery_area_image": ParameterKeys.BESTELLWIZARD_STEP8B_DELIVERY_AREA_IMAGE,
             "step9_background_image": ParameterKeys.BESTELLWIZARD_STEP9_BACKGROUND_IMAGE,
             "step10_background_image": ParameterKeys.BESTELLWIZARD_STEP10_BACKGROUND_IMAGE,
             "step11_background_image": ParameterKeys.BESTELLWIZARD_STEP11_BACKGROUND_IMAGE,

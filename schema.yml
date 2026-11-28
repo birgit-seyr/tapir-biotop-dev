@@ -10187,6 +10187,9 @@ components:
         step8_background_image:
           type: string
           format: uri
+        step8b_delivery_area_image:
+          type: string
+          format: uri
         step9_background_image:
           type: string
           format: uri
@@ -10218,6 +10221,7 @@ components:
       - step5_background_image
       - step6_background_image
       - step8_background_image
+      - step8b_delivery_area_image
       - step9_background_image
     BestellWizardOrderEvaluationRequestRequest:
       type: object
